@@ -28,4 +28,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/suwmlee/ibreoffice:latest
+            ghcr.io/suwmlee/libreoffice:latest
