@@ -1,12 +1,9 @@
 name: Push Docker
 
 on:
-  workflow_dispatch:
-    inputs:
-      publish_tag:
-        description: 'Publish Tag'
-        required: false
-        default: 'latest'
+  push:
+    branches:
+      - main
 
 jobs:
   docker:
@@ -23,7 +20,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ secrets.TOKEN }}
 
       - name: Build and Push Docker Image
         uses: docker/build-push-action@v5
@@ -31,4 +28,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/suwmlee/ibreoffice:${{ github.event.inputs.publish_tag }}
+            ghcr.io/suwmlee/ibreoffice:latest
